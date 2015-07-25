@@ -23,5 +23,6 @@ public class Guts {
 			System.out.println("Damage:" + damage);
 		} while (roll > 0 || power > 0);
 		input.close();
+
 	}
 }
