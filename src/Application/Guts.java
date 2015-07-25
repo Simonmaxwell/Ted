@@ -11,7 +11,7 @@ public class Guts {
 		double def = 0;
 
 		for (int i = 1; def > -1; i++) {
-			System.out.print("Enter defense for Enemy" + i + ":");
+			System.out.print("Enter defense for Enemy " + i + ":");
 			def = input.nextDouble();
 			enemyArray[i] = def;
 		}
@@ -23,15 +23,18 @@ public class Guts {
 			System.out.print("Enter target number:");
 			target = input.nextInt();
 			eDef = enemyArray[target];
-			System.out.print("Enter Power:");
-			power = input.nextDouble();
-			System.out.print("Enter Roll:");
-			roll = input.nextDouble();
-			double roll2 = roll / 10;
-			double power2 = power - eDef;
-			double mod2 = mod + roll2;
-			double damage = power2 * mod2;
-			System.out.println("Damage:" + damage);
+			if (target > 0) {
+				System.out.print("Enter Power:");
+				power = input.nextDouble();
+				System.out.print("Enter Roll:");
+				roll = input.nextDouble();
+				double roll2 = roll / 10;
+				double power2 = power - eDef;
+				double mod2 = mod + roll2;
+				double damage = power2 * mod2;
+				System.out.println("You did " + damage
+						+ " points of damage to enemy " + target + "!");
+			}
 		} while (target > 0);
 		input.close();
 
