@@ -11,13 +11,15 @@ public class Guts {
 		double def = 0;
 		double health = 0;
 
-		for (int i = 1; def > -1; i++) {
+		int i = 1;
+		while (def > -1) {
 			System.out.print("Enter defense for Enemy " + i + ":");
 			def = input.nextDouble();
 			System.out.print("Enter health for Enemy " + i + ":");
 			health = input.nextDouble();
 			enemyArray[i][0] = def;
 			enemyArray[i][1] = health;
+			i++;
 		}
 		double power;
 		double roll;
