@@ -7,22 +7,30 @@ public class Guts {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter Modifier:");
 		double mod = input.nextDouble();
-		double[] enemyArray = new double[7];
+		double[][] enemyArray = new double[7][2];
 		double def = 0;
+		double health = 0;
 
 		for (int i = 1; def > -1; i++) {
 			System.out.print("Enter defense for Enemy " + i + ":");
 			def = input.nextDouble();
-			enemyArray[i] = def;
+			System.out.print("Enter health for Enemy " + i + ":");
+			health = input.nextDouble();
+			enemyArray[i][0] = def;
+			enemyArray[i][1] = health;
 		}
 		double power;
 		double roll;
 		int target = 0;
+
 		do {
 			double eDef = 0;
+			double eHealth = 0;
 			System.out.print("Enter target number:");
 			target = input.nextInt();
-			eDef = enemyArray[target];
+			eDef = enemyArray[target][0];
+			eHealth = enemyArray[target][1];
+
 			if (target > 0) {
 				System.out.print("Enter Power:");
 				power = input.nextDouble();
@@ -34,6 +42,10 @@ public class Guts {
 				double damage = power2 * mod2;
 				System.out.println("You did " + damage
 						+ " points of damage to enemy " + target + "!");
+				eHealth -= damage;
+				enemyArray[target][1] = eHealth;
+				System.out.println("Enemy " + target + " has " + eHealth
+						+ " health remaining.");
 			}
 		} while (target > 0);
 		input.close();
