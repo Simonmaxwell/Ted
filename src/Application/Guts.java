@@ -7,13 +7,12 @@ public class Guts {
 		Scanner input = new Scanner(System.in);
 		System.out.print("Enter Modifier:");
 		double mod = input.nextDouble();
-		double[][] enemyArray = new double[7][2];
-		String[] enemyNameArray = new String[7];
+		Enemy[] enemyArray = new Enemy[7];
 		double def = 0;
 		double health = 0;
 		String name = "";
-
 		int i = 1;
+
 		do {
 			System.out.print("Enter name for Enemy " + i + ":");
 			name = input.next();
@@ -22,9 +21,8 @@ public class Guts {
 				def = input.nextDouble();
 				System.out.print("Enter health for Enemy " + i + ":");
 				health = input.nextDouble();
-				enemyArray[i][0] = def;
-				enemyArray[i][1] = health;
-				enemyNameArray[i] = name;
+				Enemy enemy = new Enemy(name, def, health);
+				enemyArray[i] = enemy;
 				i++;
 			}
 		} while (i < 7 && name.length() > 1);
@@ -39,9 +37,9 @@ public class Guts {
 			String enemyName = "";
 			System.out.print("Enter target number:");
 			target = input.nextInt();
-			eDef = enemyArray[target][0];
-			eHealth = enemyArray[target][1];
-			enemyName = enemyNameArray[target];
+			eDef = enemyArray[target].getDefense();
+			eHealth = enemyArray[target].getHealth();
+			enemyName = enemyArray[target].getName();
 
 			if (target > 0) {
 				System.out.print("Enter Power:");
@@ -55,7 +53,7 @@ public class Guts {
 				System.out.println("You did " + damage
 						+ " points of damage to enemy " + enemyName + "!");
 				eHealth -= damage;
-				enemyArray[target][1] = eHealth;
+				enemyArray[target].setHealth(eHealth);
 				System.out.println("Enemy " + enemyName + " has " + eHealth
 						+ " health remaining.");
 			}
