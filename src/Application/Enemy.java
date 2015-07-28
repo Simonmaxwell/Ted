@@ -10,7 +10,6 @@ public class Enemy {
 		name = eName;
 		defense = eDefense;
 		health = eHealth;
-		// You were right. It wasn't being saved!
 	}
 
 	public double getDefense() {

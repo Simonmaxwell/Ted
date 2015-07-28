@@ -12,6 +12,7 @@ public class Guts {
 		double health = 0;
 		String name = "";
 		int i = 1;
+		int enemyCount = 0;
 
 		do {
 			System.out.print("Enter name for Enemy " + i + ":");
@@ -23,7 +24,9 @@ public class Guts {
 				health = input.nextDouble();
 				Enemy enemy = new Enemy(name, def, health);
 				enemyArray[i] = enemy;
+				enemyCount++;
 				i++;
+
 			}
 		} while (i < 7 && name.length() > 1);
 
@@ -37,11 +40,11 @@ public class Guts {
 			String enemyName = "";
 			System.out.print("Enter target number:");
 			target = input.nextInt();
-			eDef = enemyArray[target].getDefense();
-			eHealth = enemyArray[target].getHealth();
-			enemyName = enemyArray[target].getName();
-
 			if (target > 0) {
+				eDef = enemyArray[target].getDefense();
+				eHealth = enemyArray[target].getHealth();
+				enemyName = enemyArray[target].getName();
+
 				System.out.print("Enter Power:");
 				power = input.nextDouble();
 				System.out.print("Enter Roll:");
@@ -50,15 +53,23 @@ public class Guts {
 				double power2 = power - eDef;
 				double mod2 = mod + roll2;
 				double damage = power2 * mod2;
+				String table = "";
 				System.out.println("You did " + damage
 						+ " points of damage to enemy " + enemyName + "!");
 				eHealth -= damage;
 				enemyArray[target].setHealth(eHealth);
-				System.out.println("Enemy " + enemyName + " has " + eHealth
-						+ " health remaining.");
+				// System.out.println("Enemy " + enemyName + " has " + eHealth
+				// + " health remaining.");
+				table = "Target\tName\tHealth\n";
+				table += "======\t======\t======\n";
+
+				for (int j = 1; j <= enemyCount; j++) {
+					table += j + "\t" + enemyArray[j].getName() + "\t"
+							+ enemyArray[j].getHealth() + "\n";
+				}
+				System.out.print(table);
 			}
 		} while (target > 0);
 		input.close();
-
 	}
 }
