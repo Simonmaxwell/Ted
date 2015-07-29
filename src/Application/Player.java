@@ -1,18 +1,17 @@
 package Application;
 
-public class Enemy {
+public class Player {
 
 	String name = "";
 	double defense = 0;
 	double health = 0;
 	double modifier = 0;
 
-	public Enemy(String eName, double eDefense, double eHealth, double eMod) {
-		name = eName;
-		defense = eDefense;
-		health = eHealth;
-		modifier = eMod;
-
+	public Player(String pName, double pDefense, double pHealth, double pMod) {
+		name = pName;
+		defense = pDefense;
+		health = pHealth;
+		modifier = pMod;
 	}
 
 	public double getModifier() {
