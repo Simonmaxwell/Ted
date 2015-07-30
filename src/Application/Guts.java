@@ -68,7 +68,6 @@ public class Guts {
 
 				double enemyDefense = currentEnemy.getDefense();
 				double enemyHealth = currentEnemy.getHealth();
-				enemyName = currentEnemy.getName();
 
 				System.out.print("Enter Power:");
 				double playerPower = input.nextDouble();
@@ -78,10 +77,16 @@ public class Guts {
 				double powerMinusDefense = playerPower - enemyDefense;
 				double adjustedMod = playerModifier + rollDividedByTen;
 				double damage = powerMinusDefense * adjustedMod;
+
+				enemyName = currentEnemy.getName();
 				System.out.println("You did " + damage
 						+ " points of damage to enemy " + enemyName + "!");
 				enemyHealth -= damage;
 				currentEnemy.setHealth(enemyHealth);
+				if (enemyHealth < 1) {
+					enemyArray.remove(currentEnemy);
+					System.out.println("Enemy " + enemyName + " was defeated!");
+				}
 			}
 		} while (targetEnemy > 0);
 		input.close();
