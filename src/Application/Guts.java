@@ -8,14 +8,14 @@ public class Guts {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
 		String name = "";
-		double def = 0;
+		double defense = 0;
 		double health = 0;
-		double mod = 0;
-		int i = 1;
+		double playerModifier = 0;
+		// int i = 1;
 		int k = 1;
 		List<Enemy> enemyArray = new ArrayList<>();
-		List<Player> playerArray = new ArrayList<>();
 
+		// List<Player> playerArray = new ArrayList<>();
 		// do {
 		// String promptType = "Player";
 		// System.out.print("Enter name for " + promptType + " " + i + ":");
@@ -42,18 +42,18 @@ public class Guts {
 			name = input.next();
 			if (name.length() > 1) {
 				System.out.print("Enter defense for Enemy " + k + ":");
-				def = input.nextDouble();
+				defense = input.nextDouble();
 				System.out.print("Enter health for Enemy " + k + ":");
 				health = input.nextDouble();
 				System.out.print("Enter Modifier:");
-				mod = input.nextDouble();
-				Enemy enemy = new Enemy(name, def, health, mod);
+				playerModifier = input.nextDouble();
+				Enemy enemy = new Enemy(name, defense, health, playerModifier);
 				enemyArray.add(enemy);
 				k++;
 			}
-		} while (i < 7 && name.length() > 1);
+		} while (k < 7 && name.length() > 1);
 
-		int eTarget = 0;
+		int targetEnemy = 0;
 
 		do {
 			String enemyName = "";
@@ -61,29 +61,29 @@ public class Guts {
 			printTable(enemyArray);
 
 			System.out.print("Enter target number:");
-			eTarget = input.nextInt();
+			targetEnemy = input.nextInt();
 
-			if (eTarget > 0) {
-				Enemy currentEnemy = enemyArray.get(eTarget - 1);
+			if (targetEnemy > 0) {
+				Enemy currentEnemy = enemyArray.get(targetEnemy - 1);
 
-				double eDef = currentEnemy.getDefense();
-				double eHealth = currentEnemy.getHealth();
+				double enemyDefense = currentEnemy.getDefense();
+				double enemyHealth = currentEnemy.getHealth();
 				enemyName = currentEnemy.getName();
 
 				System.out.print("Enter Power:");
-				double power = input.nextDouble();
+				double playerPower = input.nextDouble();
 				System.out.print("Enter Roll:");
 				double roll = input.nextDouble();
-				double roll2 = roll / 10;
-				double power2 = power - eDef;
-				double mod2 = mod + roll2;
-				double damage = power2 * mod2;
+				double rollDividedByTen = roll / 10;
+				double powerMinusDefense = playerPower - enemyDefense;
+				double adjustedMod = playerModifier + rollDividedByTen;
+				double damage = powerMinusDefense * adjustedMod;
 				System.out.println("You did " + damage
 						+ " points of damage to enemy " + enemyName + "!");
-				eHealth -= damage;
-				currentEnemy.setHealth(eHealth);
+				enemyHealth -= damage;
+				currentEnemy.setHealth(enemyHealth);
 			}
-		} while (eTarget > 0);
+		} while (targetEnemy > 0);
 		input.close();
 	}
 
