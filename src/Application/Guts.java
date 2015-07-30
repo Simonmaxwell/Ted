@@ -67,7 +67,10 @@ public class Guts {
 			double eDef = 0;
 			double eHealth = 0;
 			String enemyName = "";
+
+			printTable(enemyArray);
 			System.out.print("Enter target number:");
+
 			eTarget = input.nextInt();
 			if (eTarget > 0) {
 				Enemy currentEnemy = enemyArray.get(eTarget - 1);
@@ -84,21 +87,23 @@ public class Guts {
 				double power2 = power - eDef;
 				double mod2 = mod + roll2;
 				double damage = power2 * mod2;
-				String table = "";
 				System.out.println("You did " + damage
 						+ " points of damage to enemy " + enemyName + "!");
 				eHealth -= damage;
 				currentEnemy.setHealth(eHealth);
-				table = "Target\tName\tHealth\n";
-				table += "======\t======\t======\n";
-
-				for (int j = 0; j < enemyArray.size(); j++) {
-					table += (j + 1) + "\t" + enemyArray.get(j).getName()
-							+ "\t" + enemyArray.get(j).getHealth() + "\n";
-				}
-				System.out.print(table);
 			}
 		} while (eTarget > 0);
 		input.close();
+	}
+
+	private static void printTable(List<Enemy> enemyArray) {
+		String table = "";
+		table = "Target\tName\tHealth\n";
+		table += "======\t======\t======\n";
+		for (int j = 0; j < enemyArray.size(); j++) {
+			table += (j + 1) + "\t" + enemyArray.get(j).getName() + "\t"
+					+ enemyArray.get(j).getHealth() + "\n";
+		}
+		System.out.print(table);
 	}
 }
