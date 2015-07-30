@@ -13,11 +13,7 @@ public class Guts {
 		double mod = 0;
 		int i = 1;
 		int k = 1;
-		int playerCount = 0;
-		int enemyCount = 0;
-
 		List<Enemy> enemyArray = new ArrayList<>();
-
 		List<Player> playerArray = new ArrayList<>();
 
 		// do {
@@ -56,33 +52,28 @@ public class Guts {
 				k++;
 			}
 		} while (i < 7 && name.length() > 1);
-		enemyCount = enemyArray.size();
 
-		double power;
-		double roll;
-		int pTarget = 0;
 		int eTarget = 0;
 
 		do {
-			double eDef = 0;
-			double eHealth = 0;
 			String enemyName = "";
 
 			printTable(enemyArray);
-			System.out.print("Enter target number:");
 
+			System.out.print("Enter target number:");
 			eTarget = input.nextInt();
+
 			if (eTarget > 0) {
 				Enemy currentEnemy = enemyArray.get(eTarget - 1);
 
-				eDef = currentEnemy.getDefense();
-				eHealth = currentEnemy.getHealth();
+				double eDef = currentEnemy.getDefense();
+				double eHealth = currentEnemy.getHealth();
 				enemyName = currentEnemy.getName();
 
 				System.out.print("Enter Power:");
-				power = input.nextDouble();
+				double power = input.nextDouble();
 				System.out.print("Enter Roll:");
-				roll = input.nextDouble();
+				double roll = input.nextDouble();
 				double roll2 = roll / 10;
 				double power2 = power - eDef;
 				double mod2 = mod + roll2;
